@@ -51,6 +51,8 @@ Cleaned Transactions Sample:
 ['fire', 'rescue', 'evacuate', 'keyword', 'location']
 ['earthquake', 'damage', 'relief', 'keyword', 'location']
 
+# Frequent Itemsets
+Using the Apriori algorithm, we extracted frequent itemsets with a minimum support of 1%. Frequent itemsets represent words or combinations of words that appear together in at least 1% of the transactions.
 
 # Transaction Encoding
 transactions = data['transactions'].tolist()
@@ -72,13 +74,8 @@ Frequent Itemsets:
 1   0.011  ['earthquake']
 2   0.015  ['relief', 'damage']
 
-# Generate Association Rules
-min_confidence = 0.5
-rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence)
-
-# Display rules
-print("Association Rules:")
-print(rules[['antecedents', 'consequents', 'confidence', 'lift']])
+Association Rules
+Association rules were generated from the frequent itemsets to find relationships between co-occurring words. These rules show patterns where the presence of one word predicts another with high confidence.
 
 # Generate Association Rules
 min_confidence = 0.5
@@ -88,3 +85,19 @@ rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=
 print("Association Rules:")
 print(rules[['antecedents', 'consequents', 'confidence', 'lift']])
 
+# Generate Association Rules
+min_confidence = 0.5
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence)
+
+# Display rules
+print("Association Rules:")
+print(rules[['antecedents', 'consequents', 'confidence', 'lift']])
+
+Analysis and Limitations
+Frequent Itemsets: Patterns like ['fire', 'rescue'] indicate common co-occurrences in emergency-related tweets.
+Sparse Data: Tweets are short, so many patterns consist of single words rather than multi-word itemsets.
+Association Rules: While some meaningful rules were generated, many transactions lacked strong co-occurrences.
+Future Work
+N-Grams: Use bigrams or trigrams to extract richer context from tweets.
+Lower Thresholds: Experiment with even lower support and confidence thresholds to uncover less frequent patterns.
+Alternative Methods: Explore clustering or classification to complement frequent pattern analysis.
