@@ -85,11 +85,3 @@ Association Rules:
 1   ['earthquake']   ['damage']     0.65      1.3
 
 
----
-
-### **Next Steps**
-1. Copy this content.
-2. Save it in a file named `frequent_pattern_mining.md`.
-3. Commit and push it to your GitHub repository.
-
-Let me know if you need help with any of the steps! 🚀
