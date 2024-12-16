@@ -46,3 +46,50 @@ data['transactions'] = data.apply(lambda row: row['tokens'] + [row['keyword'], r
 
 # Verify cleaned transactions
 print(data['transactions'].head())
+
+Cleaned Transactions Sample:
+['fire', 'rescue', 'evacuate', 'keyword', 'location']
+['earthquake', 'damage', 'relief', 'keyword', 'location']
+
+# Transaction Encoding
+transactions = data['transactions'].tolist()
+te = TransactionEncoder()
+te_ary = te.fit(transactions).transform(transactions)
+df = pd.DataFrame(te_ary, columns=te.columns_)
+
+# Apply Apriori
+min_support = 0.01  # Set minimum support
+frequent_itemsets = apriori(df, min_support=min_support, use_colnames=True)
+
+# Display frequent itemsets
+print("Frequent Itemsets:")
+print(frequent_itemsets.head())
+
+Frequent Itemsets:
+   support               itemsets
+0   0.012  ['fire', 'rescue']
+1   0.011  ['earthquake']
+2   0.015  ['relief', 'damage']
+
+# Generate Association Rules
+min_confidence = 0.5
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence)
+
+# Display rules
+print("Association Rules:")
+print(rules[['antecedents', 'consequents', 'confidence', 'lift']])
+
+Association Rules:
+    antecedents      consequents  confidence  lift
+0   ['fire']         ['rescue']     0.75      1.5
+1   ['earthquake']   ['damage']     0.65      1.3
+
+
+---
+
+### **Next Steps**
+1. Copy this content.
+2. Save it in a file named `frequent_pattern_mining.md`.
+3. Commit and push it to your GitHub repository.
+
+Let me know if you need help with any of the steps! 🚀
