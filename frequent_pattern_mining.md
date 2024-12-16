@@ -1,7 +1,7 @@
 # Frequent Pattern Mining
 
 ## Introduction
-Frequent Pattern Mining (FPM) identifies common co-occurring words or patterns within a dataset. For this project, we applied FPM to analyze a collection of tweets, aiming to uncover recurring themes related to emergencies. 
+Frequent Pattern Mining (FPM) identifies common co-occurring words or patterns within a dataset. For this project, we applied FPM to analyze a collection of tweets, aiming to uncover recurring themes related to emergencies.
 
 ---
 
@@ -51,6 +51,7 @@ Cleaned Transactions Sample:
 ['fire', 'rescue', 'evacuate', 'keyword', 'location']
 ['earthquake', 'damage', 'relief', 'keyword', 'location']
 
+
 # Transaction Encoding
 transactions = data['transactions'].tolist()
 te = TransactionEncoder()
@@ -79,9 +80,11 @@ rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=
 print("Association Rules:")
 print(rules[['antecedents', 'consequents', 'confidence', 'lift']])
 
-Association Rules:
-    antecedents      consequents  confidence  lift
-0   ['fire']         ['rescue']     0.75      1.5
-1   ['earthquake']   ['damage']     0.65      1.3
+# Generate Association Rules
+min_confidence = 0.5
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence)
 
+# Display rules
+print("Association Rules:")
+print(rules[['antecedents', 'consequents', 'confidence', 'lift']])
 
