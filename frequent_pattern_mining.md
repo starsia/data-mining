@@ -68,6 +68,8 @@ frequent_itemsets = apriori(df, min_support=min_support, use_colnames=True)
 print("Frequent Itemsets:")
 print(frequent_itemsets.head())
 
+'''python
+
 Frequent Itemsets:
    support               itemsets
 0   0.012  ['fire', 'rescue']
