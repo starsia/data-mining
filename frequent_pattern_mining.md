@@ -101,4 +101,12 @@ Association Rules:
 0   ['fire']         ['rescue']     0.75      1.5
 1   ['earthquake']   ['damage']     0.65      1.3
 ```
+## Analysis and Limitations
+- Frequent Itemsets: Patterns like ['fire', 'rescue'] indicate common co-occurrences in emergency-related tweets.
+- Sparse Data: Tweets are short, so many patterns consist of single words rather than multi-word itemsets.
+- Association Rules: While some meaningful rules were generated, many transactions lacked strong co-occurrences.
 
+## Future Work
+N-Grams: Use bigrams or trigrams to extract richer context from tweets.
+Lower Thresholds: Experiment with even lower support and confidence thresholds to uncover less frequent patterns.
+Alternative Methods: Explore clustering or classification to complement frequent pattern analysis.
