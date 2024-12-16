@@ -95,8 +95,11 @@ print(rules[['antecedents', 'consequents', 'confidence', 'lift']])
 
 Analysis and Limitations
 Frequent Itemsets: Patterns like ['fire', 'rescue'] indicate common co-occurrences in emergency-related tweets.
-Sparse Data: Tweets are short, so many patterns consist of single words rather than multi-word itemsets.
-Association Rules: While some meaningful rules were generated, many transactions lacked strong co-occurrences.
+
+## Introduction
+Frequent Pattern Mining (FPM) identifies common co-occurring words or patterns within a dataset. For this project, we applied FPM to analyze a collection of tweets, aiming to uncover recurring themes related to emergencies.
+
+---
 Future Work
 N-Grams: Use bigrams or trigrams to extract richer context from tweets.
 Lower Thresholds: Experiment with even lower support and confidence thresholds to uncover less frequent patterns.
