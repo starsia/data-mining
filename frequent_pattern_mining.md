@@ -53,3 +53,52 @@ Cleaned Transactions Sample:
 ['fire', 'rescue', 'evacuate', 'keyword', 'location']
 ['earthquake', 'damage', 'relief', 'keyword', 'location']
 ```
+## Frequent Itemsets
+Using the Apriori algorithm, we extracted frequent itemsets with a minimum support of 1%. Frequent itemsets represent words or combinations of words that appear together in at least 1% of the transactions.
+
+### Code:
+```python
+# Transaction Encoding
+transactions = data['transactions'].tolist()
+te = TransactionEncoder()
+te_ary = te.fit(transactions).transform(transactions)
+df = pd.DataFrame(te_ary, columns=te.columns_)
+
+# Apply Apriori
+min_support = 0.01  # Set minimum support
+frequent_itemsets = apriori(df, min_support=min_support, use_colnames=True)
+
+# Display frequent itemsets
+print("Frequent Itemsets:")
+print(frequent_itemsets.head())
+```
+### Sample Output:
+```python
+Frequent Itemsets:
+   support               itemsets
+0   0.012  ['fire', 'rescue']
+1   0.011  ['earthquake']
+2   0.015  ['relief', 'damage']
+```
+## Association Rules
+Association rules were generated from the frequent itemsets to find relationships between co-occurring words. These rules show patterns where the presence of one word predicts another with high confidence.
+
+### Code:
+```python
+# Generate Association Rules
+min_confidence = 0.5
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence)
+
+# Display rules
+print("Association Rules:")
+print(rules[['antecedents', 'consequents', 'confidence', 'lift']])
+```
+
+### Sample Output:
+```python
+Association Rules:
+    antecedents      consequents  confidence  lift
+0   ['fire']         ['rescue']     0.75      1.5
+1   ['earthquake']   ['damage']     0.65      1.3
+```
+
